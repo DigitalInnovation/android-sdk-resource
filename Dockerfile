@@ -1,4 +1,4 @@
-FROM DigitalInnovation/android-sdk-resource:buildroot
+FROM digitalinnovation/android-sdk-resource:buildroot
 
 COPY assets/ /opt/resource/
 
