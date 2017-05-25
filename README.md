@@ -24,31 +24,3 @@ As a third party resource, this needs to be declared in the pipeline's
   ```
 
   The order of the components is not important. Duplicates are ignored.
-
-
-## Behavior
-
-### `check`
-
-No real check is done. The version of the resource is the list of components
-that will be provided.
-
-### `in`
-
-Fetches the Android SDK.
-
-> ##### Important note about licenses
-> By using this resource, you are automatically accepting the licenses for all
-> components specified. Make sure this is acceptable beforehand.
-
-The destination will have the SDK with requested components installed. The
-destination directory can be used as the ANDROID_HOME environmental variable
-for your task.
-
-Since Concourse caches resource versions, the SDK won't be downloaded again
-unless the set of required components changes.
-
-### `out`
-
-This resource does not support this operation. A `put` step in the build plan
-will always fail.
