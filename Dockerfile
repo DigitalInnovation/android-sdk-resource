@@ -59,9 +59,6 @@ RUN apt-add-repository ppa:openjdk-r/ppa
 RUN apt-get update
 RUN apt-get -y install openjdk-8-jdk
 
-# Install Rake
-RUN apt-get install -y rake
-
 # Clean Up Apt-get
 RUN rm -rf /var/lib/apt/lists/*
 RUN apt-get clean
