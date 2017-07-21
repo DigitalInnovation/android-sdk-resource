@@ -69,16 +69,16 @@ RUN tar -xvzf android-sdk_r24.4.1-linux.tgz
 RUN mv android-sdk-linux /usr/local/android-sdk
 RUN rm android-sdk_r24.4.1-linux.tgz
 
-ENV ANDROID_COMPONENTS platform-tools,android-25,build-tools-25.0.2
+ENV ANDROID_COMPONENTS platform-tools,android-25,build-tools-25.0.3
 
 # Install Android tools
 RUN echo y | /usr/local/android-sdk/tools/android update sdk --filter "${ANDROID_COMPONENTS}" --no-ui -a
 
 # Install Android NDK
-RUN wget http://dl.google.com/android/repository/android-ndk-r14b-linux-x86_64.zip
-RUN unzip android-ndk-r14b-linux-x86_64.zip
-RUN mv android-ndk-r14b /usr/local/android-ndk
-RUN rm android-ndk-r14b-linux-x86_64.zip
+RUN wget http://dl.google.com/android/repository/android-ndk-r15b-linux-x86_64.zip
+RUN unzip android-ndk-r15b-linux-x86_64.zip
+RUN mv android-ndk-r15b /usr/local/android-ndk
+RUN rm android-ndk-r15b-linux-x86_64.zip
 
 # Environment variables
 ENV ANDROID_HOME /usr/local/android-sdk
@@ -88,7 +88,7 @@ ENV JENKINS_HOME $HOME
 ENV PATH ${INFER_HOME}/bin:${PATH}
 ENV PATH $PATH:$ANDROID_SDK_HOME/tools
 ENV PATH $PATH:$ANDROID_SDK_HOME/platform-tools
-ENV PATH $PATH:$ANDROID_SDK_HOME/build-tools/25.0.2
+ENV PATH $PATH:$ANDROID_SDK_HOME/build-tools/25.0.3
 ENV PATH $PATH:$ANDROID_NDK_HOME
 
 # Export JAVA_HOME variable
