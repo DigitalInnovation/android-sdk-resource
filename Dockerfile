@@ -115,6 +115,7 @@ RUN id $RUN_USER || adduser --uid "$RUN_UID" \
 # Fix permissions
 RUN chown -R $RUN_USER:$RUN_USER $ANDROID_HOME $ANDROID_SDK_HOME $ANDROID_NDK_HOME
 RUN chmod -R a+rx $ANDROID_HOME $ANDROID_SDK_HOME $ANDROID_NDK_HOME
+RUN chmod -R +x gradlew
 
 # Creating project directories prepared for build when running
 # `docker run`
