@@ -52,6 +52,7 @@ RUN apt-get install -y \
   wget \
   zip \
   zlib1g-dev \
+  dos2unix \
   --no-install-recommends
 
 # Install Java
