@@ -72,8 +72,21 @@ RUN rm android-sdk_r24.4.1-linux.tgz
 
 ENV ANDROID_COMPONENTS platform-tools,android-25,build-tools-25.0.3
 
+RUN echo y | android update sdk --no-ui --all --filter platform-tools | grep 'package installed'
+
 # Install Android tools
 RUN echo y | /usr/local/android-sdk/tools/android update sdk --filter "${ANDROID_COMPONENTS}" --no-ui -a
+
+# SDKs
+RUN echo y | android update sdk --no-ui --all --filter android-25 | grep 'package installed'
+
+# build tools
+RUN echo y | android update sdk --no-ui --all --filter build-tools-25.0.3 | grep 'package installed'
+
+# Extras
+RUN echo y | android update sdk --no-ui --all --filter extra-android-m2repository | grep 'package installed'
+RUN echo y | android update sdk --no-ui --all --filter extra-google-m2repository | grep 'package installed'
+RUN echo y | android update sdk --no-ui --all --filter extra-google-google_play_services | grep 'package installed'
 
 # Install Android NDK
 RUN wget http://dl.google.com/android/repository/android-ndk-r15b-linux-x86_64.zip
@@ -116,7 +129,6 @@ RUN id $RUN_USER || adduser --uid "$RUN_UID" \
 # Fix permissions
 RUN chown -R $RUN_USER:$RUN_USER $ANDROID_HOME $ANDROID_SDK_HOME $ANDROID_NDK_HOME
 RUN chmod -R a+rx $ANDROID_HOME $ANDROID_SDK_HOME $ANDROID_NDK_HOME
-# RUN chmod -R +x gradlew
 
 # Creating project directories prepared for build when running
 # `docker run`

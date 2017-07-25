@@ -18,9 +18,10 @@ As a third party resource, this needs to be declared in the pipeline's
   ```yaml
   components:
     - tools
-    - build-tools-25.0.3
     - android-25
+    - build-tools-25.0.3
     - extra-android-m2repository
+    - extra-android-support
   ```
 
   The order of the components is not important. Duplicates are ignored.
