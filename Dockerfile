@@ -70,23 +70,10 @@ RUN tar -xvzf android-sdk_r24.4.1-linux.tgz
 RUN mv android-sdk-linux /usr/local/android-sdk
 RUN rm android-sdk_r24.4.1-linux.tgz
 
-ENV ANDROID_COMPONENTS platform-tools,android-25,build-tools-25.0.3
-
-RUN echo y | android update sdk --no-ui --all --filter platform-tools | grep 'package installed'
+ENV ANDROID_COMPONENTS platform-tools,android-25,build-tools-25.0.3,extra-android-m2repository,extra-google-m2repository,extra-google-google_play_services
 
 # Install Android tools
 RUN echo y | /usr/local/android-sdk/tools/android update sdk --filter "${ANDROID_COMPONENTS}" --no-ui -a
-
-# SDKs
-RUN echo y | android update sdk --no-ui --all --filter android-25 | grep 'package installed'
-
-# build tools
-RUN echo y | android update sdk --no-ui --all --filter build-tools-25.0.3 | grep 'package installed'
-
-# Extras
-RUN echo y | android update sdk --no-ui --all --filter extra-android-m2repository | grep 'package installed'
-RUN echo y | android update sdk --no-ui --all --filter extra-google-m2repository | grep 'package installed'
-RUN echo y | android update sdk --no-ui --all --filter extra-google-google_play_services | grep 'package installed'
 
 # Install Android NDK
 RUN wget http://dl.google.com/android/repository/android-ndk-r15b-linux-x86_64.zip
