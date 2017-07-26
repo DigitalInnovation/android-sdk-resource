@@ -69,23 +69,6 @@ RUN apt-get -y install oracle-java8-installer oracle-java8-set-default
 RUN rm -rf /var/lib/apt/lists/*
 RUN apt-get clean
 
-# Install Android SDK
-RUN wget https://dl.google.com/android/android-sdk_r25.2.5-linux.tgz
-RUN tar -xvzf android-sdk_r25.2.5-linux.tgz
-RUN mv android-sdk-linux /usr/local/android-sdk
-RUN rm android-sdk_r25.2.5-linux.tgz
-
-ENV ANDROID_COMPONENTS platform-tools,android-25,build-tools-25.0.3,extra-android-m2repository,extra-google-m2repository,extra-google-google_play_services
-
-# Install Android tools
-RUN echo y | /usr/local/android-sdk/tools/android update sdk --filter "${ANDROID_COMPONENTS}" --no-ui -a
-
-# Install Android NDK
-RUN wget http://dl.google.com/android/repository/android-ndk-r15b-linux-x86_64.zip
-RUN unzip android-ndk-r15b-linux-x86_64.zip
-RUN mv android-ndk-r15b /usr/local/android-ndk
-RUN rm android-ndk-r15b-linux-x86_64.zip
-
 # Environment variables
 ENV ANDROID_HOME /usr/local/android-sdk
 ENV ANDROID_SDK_HOME $ANDROID_HOME
@@ -96,6 +79,26 @@ ENV PATH $PATH:$ANDROID_SDK_HOME/tools
 ENV PATH $PATH:$ANDROID_SDK_HOME/platform-tools
 ENV PATH $PATH:$ANDROID_SDK_HOME/build-tools/25.0.3
 ENV PATH $PATH:$ANDROID_NDK_HOME
+ENV ANDROID_SDK_PACKAGES='platform-tools,android-25,build-tools-25.0.3,extra-android-m2repository,extra-google-m2repository,extra-google-google_play_services'
+
+# Install Android SDK
+RUN wget https://dl.google.com/android/repository/sdk-tools-linux-3859397.zip -O /tmp/android/android-tools.zip && \
+    unzip /tmp/android-tools.zip -d ${ANDROID_HOME} && \
+    rm -v /tmp/android-tools.zip
+
+# Install Android SDK Packages
+# https://developer.android.com/studio/command-line/sdkmanager.html
+RUN mkdir -p ${ANDROID_HOME}/licenses/ && \
+    echo "8933bad161af4178b1185d1a37fbf41ea5269c55" > ${ANDROID_HOME}/licenses/android-sdk-license && \
+    echo "84831b9409646a918e30573bab4c9c91346d8abd" > ${ANDROID_HOME}/licenses/android-sdk-preview-license && \
+    chmod +x ${ANDROID_HOME}/tools/bin/sdkmanager && \
+    ${ANDROID_HOME}/tools/bin/sdkmanager --channel=3 ${ANDROID_SDK_PACKAGES}
+
+
+# Install Android NDK
+RUN wget http://dl.google.com/android/repository/android-ndk-r15b-linux-x86_64.zip -O /tmp/android-ndk.zip && \
+    unzip /tmp/android-ndk.zip -d ${ANDROID_NDK_HOME} && \
+    rm -v /tmp/android-ndk.zip
 
 # Export JAVA_HOME variable
 ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64/
