@@ -59,7 +59,7 @@ RUN apt-get install -y \
 RUN apt-get update
 RUN apt-add-repository ppa:webupd8team/java
 RUN apt-get update
-RUN apt-get -y install oracle-java8-installer
+RUN apt-get -y install --force-yes oracle-java8-installer
 
 # Clean Up Apt-get
 RUN rm -rf /var/lib/apt/lists/*
