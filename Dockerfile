@@ -59,7 +59,11 @@ RUN apt-get install -y \
 RUN apt-get update
 RUN apt-add-repository ppa:webupd8team/java
 RUN apt-get update
-RUN apt-get -y install --force-yes oracle-java8-installer
+
+RUN echo debconf shared/accepted-oracle-license-v1-1 select true | sudo debconf-set-selections
+RUN echo debconf shared/accepted-oracle-license-v1-1 seen true | sudo debconf-set-selections
+
+RUN apt-get -y install oracle-java8-installer oracle-java8-set-default
 
 # Clean Up Apt-get
 RUN rm -rf /var/lib/apt/lists/*
