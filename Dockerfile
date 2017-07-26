@@ -82,7 +82,7 @@ ENV PATH $PATH:$ANDROID_NDK_HOME
 ENV ANDROID_SDK_PACKAGES='platform-tools,android-25,build-tools-25.0.3,extra-android-m2repository,extra-google-m2repository,extra-google-google_play_services'
 
 # Install Android SDK
-RUN wget https://dl.google.com/android/repository/sdk-tools-linux-3859397.zip -O /tmp/android/android-tools.zip && \
+RUN wget https://dl.google.com/android/repository/sdk-tools-linux-3859397.zip -O /tmp/android-tools.zip && \
     unzip /tmp/android-tools.zip -d ${ANDROID_HOME} && \
     rm -v /tmp/android-tools.zip
 
