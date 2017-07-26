@@ -56,9 +56,10 @@ RUN apt-get install -y \
   --no-install-recommends
 
 # Install Java
-RUN apt-add-repository ppa:openjdk-r/ppa
 RUN apt-get update
-RUN apt-get -y install openjdk-8-jdk
+RUN apt-add-repository ppa:webupd8team/java
+RUN apt-get update
+RUN apt-get -y install oracle-java8-install
 
 # Clean Up Apt-get
 RUN rm -rf /var/lib/apt/lists/*
