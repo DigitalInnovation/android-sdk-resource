@@ -79,7 +79,7 @@ ENV PATH $PATH:$ANDROID_SDK_HOME/tools
 ENV PATH $PATH:$ANDROID_SDK_HOME/platform-tools
 ENV PATH $PATH:$ANDROID_SDK_HOME/build-tools/25.0.3
 ENV PATH $PATH:$ANDROID_NDK_HOME
-ENV ANDROID_SDK_PACKAGES='build-tools;26.0.0 platforms;android-26 platform-tools extras;android;m2repository extra;google;m2repository extra;google;google_play_services'
+ENV ANDROID_SDK_PACKAGES="build-tools;25.0.3 platforms;android-25 platform-tools extras;android;m2repository extras;google;m2repository extras;google;google_play_services"
 
 # Install Android SDK
 RUN wget https://dl.google.com/android/repository/sdk-tools-linux-3859397.zip -O /tmp/android-tools.zip && \
@@ -88,12 +88,12 @@ RUN wget https://dl.google.com/android/repository/sdk-tools-linux-3859397.zip -O
 
 # Install Android SDK Packages
 # https://developer.android.com/studio/command-line/sdkmanager.html
-RUN mkdir -p ${ANDROID_HOME}/licenses/
-RUN echo "8933bad161af4178b1185d1a37fbf41ea5269c55" > ${ANDROID_HOME}/licenses/android-sdk-license
-RUN echo "84831b9409646a918e30573bab4c9c91346d8abd" > ${ANDROID_HOME}/licenses/android-sdk-preview-license
-RUN chmod +x ${ANDROID_HOME}/tools/bin/sdkmanager
-RUN touch /usr/local/share/android-sdk
-RUN ${ANDROID_HOME}/tools/bin/sdkmanager --channel=3 ${ANDROID_SDK_PACKAGES}
+RUN mkdir -p ${ANDROID_HOME}/licenses/ && \
+    echo "8933bad161af4178b1185d1a37fbf41ea5269c55" > ${ANDROID_HOME}/licenses/android-sdk-license && \
+    echo "84831b9409646a918e30573bab4c9c91346d8abd" > ${ANDROID_HOME}/licenses/android-sdk-preview-license && \
+    chmod +x ${ANDROID_HOME}/tools/bin/sdkmanager && \
+    touch /usr/local/share/android-sdk && \
+    ${ANDROID_HOME}/tools/bin/sdkmanager --channel=3 --verbose ${ANDROID_SDK_PACKAGES}
 
 # Install Android NDK
 RUN wget http://dl.google.com/android/repository/android-ndk-r15b-linux-x86_64.zip -O /tmp/android-ndk.zip && \
