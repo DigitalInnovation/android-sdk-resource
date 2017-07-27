@@ -101,7 +101,7 @@ RUN wget http://dl.google.com/android/repository/android-ndk-r15b-linux-x86_64.z
     rm -v /tmp/android-ndk.zip
 
 # Export JAVA_HOME variable
-ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64/
+ENV JAVA_HOME /usr/lib/jvm/java-8-oracle/
 
 # Support Gradle
 ENV TERM dumb
