@@ -88,17 +88,17 @@ RUN wget https://dl.google.com/android/repository/sdk-tools-linux-3859397.zip -O
 
 # Install Android SDK Packages
 # https://developer.android.com/studio/command-line/sdkmanager.html
-RUN mkdir -p ${ANDROID_HOME}/licenses/ && \
-    echo "8933bad161af4178b1185d1a37fbf41ea5269c55" > ${ANDROID_HOME}/licenses/android-sdk-license && \
-    echo "84831b9409646a918e30573bab4c9c91346d8abd" > ${ANDROID_HOME}/licenses/android-sdk-preview-license && \
-    chmod +x ${ANDROID_HOME}/tools/bin/sdkmanager && \
-    touch /usr/local/share/android-sdk && \
-    ${ANDROID_HOME}/tools/bin/sdkmanager --channel=3 --verbose ${ANDROID_SDK_PACKAGES}
+RUN mkdir -p ${ANDROID_HOME}/licenses/
+RUN echo "8933bad161af4178b1185d1a37fbf41ea5269c55" > ${ANDROID_HOME}/licenses/android-sdk-license
+RUN echo "84831b9409646a918e30573bab4c9c91346d8abd" > ${ANDROID_HOME}/licenses/android-sdk-preview-license
+RUN chmod +x ${ANDROID_HOME}/tools/bin/sdkmanager
+RUN touch /usr/local/share/android-sdk
+RUN ${ANDROID_HOME}/tools/bin/sdkmanager --channel=3 --verbose ${ANDROID_SDK_PACKAGES}
 
 # Install Android NDK
-RUN wget http://dl.google.com/android/repository/android-ndk-r15b-linux-x86_64.zip -O /tmp/android-ndk.zip && \
-    unzip /tmp/android-ndk.zip -d ${ANDROID_NDK_HOME} && \
-    rm -v /tmp/android-ndk.zip
+RUN wget http://dl.google.com/android/repository/android-ndk-r15b-linux-x86_64.zip -O /tmp/android-ndk.zip
+RUN unzip /tmp/android-ndk.zip -d ${ANDROID_NDK_HOME}
+RUN rm -v /tmp/android-ndk.zip
 
 # Export JAVA_HOME variable
 ENV JAVA_HOME /usr/lib/jvm/java-8-oracle/
