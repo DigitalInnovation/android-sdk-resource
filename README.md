@@ -19,7 +19,7 @@ As a third party resource, this needs to be declared in the pipeline's
   components:
     - tools
     - android-25
-    - build-tools-25.0.3
+    - build-tools-26.0.2
     - extra-android-m2repository
     - extra-android-support
   ```
