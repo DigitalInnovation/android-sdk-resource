@@ -90,6 +90,7 @@ RUN wget https://dl.google.com/android/repository/sdk-tools-linux-3859397.zip -O
 # https://developer.android.com/studio/command-line/sdkmanager.html
 RUN mkdir -p ${ANDROID_HOME}/licenses/
 RUN echo "8933bad161af4178b1185d1a37fbf41ea5269c55" > ${ANDROID_HOME}/licenses/android-sdk-license
+RUN echo "d56f5187479451eabf01fb78af6dfcb131a6481e" >> ${ANDROID_HOME}/licenses/android-sdk-license
 RUN echo "84831b9409646a918e30573bab4c9c91346d8abd" > ${ANDROID_HOME}/licenses/android-sdk-preview-license
 RUN chmod +x ${ANDROID_HOME}/tools/bin/sdkmanager
 RUN touch /usr/local/share/android-sdk
