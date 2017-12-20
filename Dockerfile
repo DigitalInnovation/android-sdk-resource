@@ -77,9 +77,9 @@ ENV JENKINS_HOME $HOME
 ENV PATH ${INFER_HOME}/bin:${PATH}
 ENV PATH $PATH:$ANDROID_SDK_HOME/tools
 ENV PATH $PATH:$ANDROID_SDK_HOME/platform-tools
-ENV PATH $PATH:$ANDROID_SDK_HOME/build-tools/26.0.2
+ENV PATH $PATH:$ANDROID_SDK_HOME/build-tools/27.0.2
 ENV PATH $PATH:$ANDROID_NDK_HOME
-ENV ANDROID_SDK_PACKAGES="build-tools;27.0.1 platforms;android-27 platform-tools extras;android;m2repository extras;google;m2repository extras;google;google_play_services"
+ENV ANDROID_SDK_PACKAGES="build-tools;27.0.2 platforms;android-27 platform-tools extras;android;m2repository extras;google;m2repository extras;google;google_play_services"
 
 # Install Android SDK
 RUN wget https://dl.google.com/android/repository/sdk-tools-linux-3859397.zip -O /tmp/android-tools.zip && \

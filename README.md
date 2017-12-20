@@ -18,8 +18,8 @@ As a third party resource, this needs to be declared in the pipeline's
   ```yaml
   components:
     - tools
-    - android-25
-    - build-tools-26.0.2
+    - android-27
+    - build-tools-27.0.2
     - extra-android-m2repository
     - extra-android-support
   ```
